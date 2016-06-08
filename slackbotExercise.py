@@ -55,6 +55,7 @@ class Bot:
 
             self.team_domain = settings["teamDomain"]
             self.channel_name = settings["channelName"]
+            self.channel_id = settings["channelId"]
             self.min_countdown = settings["callouts"]["timeBetween"]["minTime"]
             self.max_countdown = settings["callouts"]["timeBetween"]["maxTime"]
             self.num_people_per_callout = settings["callouts"]["numPeople"]
@@ -68,7 +69,7 @@ class Bot:
 
             self.debug = settings["debug"]
 
-        self.post_URL = "https://" + self.team_domain + ".slack.com/services/hooks/slackbot?token=" + URL_TOKEN_STRING + "&channel=" + HASH + self.channel_name
+        self.post_URL = "https://slack.com/api/chat.postMessage?token="+URL_TOKEN_STRING+"&channel="+self.channel_id+"&as_user=true&link_names=1"
 
 
 ################################################################################
@@ -157,7 +158,7 @@ def selectExerciseAndStartTime(bot):
 
     # Announce the exercise to the thread
     if not bot.debug:
-        requests.post(bot.post_URL, data=lottery_announcement)
+        requests.get(bot.post_URL+"&text="+lottery_announcement)
     print lottery_announcement
 
     # Sleep the script until time is up
@@ -221,7 +222,7 @@ def assignExercise(bot, exercise):
 
     # Announce the user
     if not bot.debug:
-        requests.post(bot.post_URL, data=winner_announcement)
+        requests.get(bot.post_URL+"&text="+winner_announcement)
     print winner_announcement
 
 
@@ -256,7 +257,7 @@ def saveUsers(bot):
     s += "```"
 
     if not bot.debug:
-        requests.post(bot.post_URL, data=s)
+        requests.get(bot.post_URL+"&text="+s)
     print s
 
 

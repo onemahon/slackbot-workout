@@ -1,7 +1,7 @@
 {
-  "teamDomain": "yourDomainHere",
-  "channelName": "general",
-  "channelId": "channelIdHere",
+  "teamDomain": "levelup",
+  "channelName": "fitness",
+  "channelId": "C0S666402",
 
   "officeHours": {
     "on": false,
@@ -13,8 +13,8 @@
 
   "callouts": {
     "timeBetween": {
-      "minTime": 17,
-      "maxTime": 23,
+      "minTime": 20,
+      "maxTime": 35,
       "units": "minutes"
     },
     "numPeople": 3,
